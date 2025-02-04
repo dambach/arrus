@@ -23,7 +23,6 @@ with arrus.Session("us4r_L3-9i-D.prototxt") as sess:
     us4r = sess.get_device("/Us4R:0")
     us4r.set_hv_voltage(20)
     n_elements = us4r.get_probe_model().n_elements
-    print("Number of elements: ", n_elements)
 
     sequence = LinSequence(
         # tx_aperture_center_element=np.arange(0, n_elements,step=2),
@@ -48,7 +47,7 @@ with arrus.Session("us4r_L3-9i-D.prototxt") as sess:
 
     scheme = Scheme(
         tx_rx_sequence=sequence,
-        # processing=get_bmode_imaging(sequence=sequence, grid=(x_grid, z_grid))
+        processing=get_bmode_imaging(sequence=sequence, grid=(x_grid, z_grid))
     )
 
     # Upload sequence on the us4r-lite device.
